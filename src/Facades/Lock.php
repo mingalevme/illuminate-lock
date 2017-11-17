@@ -1,6 +1,6 @@
 <?php
 
-namespace Mingalevme\Illuminate\Google\Facades;
+namespace Mingalevme\Illuminate\Lock\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

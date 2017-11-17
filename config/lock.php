@@ -34,13 +34,13 @@ return [
         'memcached' => [
             'driver' => 'memcached',
             'connection' => env('LOCK_MEMCACHED_CONNECTION', 'memcached'),
-            'ttl' => 300,
+            'ttl' => env('LOCK_MEMCACHED_TTL', 300),
         ],
         
         'redis' => [
             'driver' => 'redis',
             'connection' => env('LOCK_REDIS_CONNECTION', 'default'),
-            'ttl' => 300,
+            'ttl' => env('LOCK_REDIS_TTL', 300),
         ],
         
         'semaphore' => [
@@ -49,15 +49,15 @@ return [
         
         'retryTillSave' => [
             'driver' => 'retryTillSave',
-            'decorated' => 'flock',
-            'retrySleep' => 100,
-            'retryCount' => \PHP_INT_MAX,
+            'decorated' => env('LOCK_RETRY_TILL_SAVE_DECORATED', 'flock'),
+            'retrySleep' => env('LOCK_RETRY_TILL_SAVE_RETRY_SLEEP', 100),
+            'retryCount' => env('LOCK_RETRY_TILL_SAVE_RETRY_COUNT', \PHP_INT_MAX),
         ],
         
         'combined' => [
             'driver' => 'combined',
             'stores' => ['flock', 'memcached'],
-            'strategy' => 'consensus',
+            'strategy' => env('LOCK_COMBINED_STRATEGY', 'consensus'),
         ],
         
     ],

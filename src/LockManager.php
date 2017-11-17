@@ -3,6 +3,7 @@
 namespace Mingalevme\Illuminate\Lock;
 
 use InvalidArgumentException;
+use Symfony\Component\Lock\Factory;
 use Illuminate\Support\Facades\Cache;
 use Symfony\Component\Lock\Store\RedisStore;
 use Symfony\Component\Lock\Store\FlockStore;
@@ -102,7 +103,7 @@ class LockManager
         $driverMethod = 'create'.ucfirst($config['driver']).'Driver';
         
         if (method_exists($this, $driverMethod)) {
-            return $this->{$driverMethod}($config);
+            return new Factory($this->{$driverMethod}($config));
         } else {
             throw new InvalidArgumentException("Driver [{$config['driver']}] is not supported.");
         }
@@ -184,10 +185,16 @@ class LockManager
                 . 'Strategy';
         $strategy = new $strategyClass();
         
+        if (is_string($config['stores'])) {
+            $config['stores'] = explode(',', $config['stores']);
+        } elseif (!is_array($config['stores'])) {
+            throw new \InvalidArgumentException('Invalid config format for "stores" entry');
+        }
+        
         $stores = [];
         
         foreach ($config['stores'] as $store) {
-            $stores[] = $this->store($store);
+            $stores[] = $this->store(trim($store));
         }
         
         return new CombinedStore($stores, $strategy);
