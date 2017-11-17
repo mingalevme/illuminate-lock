@@ -1,0 +1,45 @@
+{
+    "name": "mingalevme/illuminate-lock",
+    "description": "Laravel/Lumen decorator fot symfony/lock component",
+    "keywords": [
+        "laravel",
+        "lumen",
+        "lock",
+        "mutex",
+        "semaphore"
+    ],
+    "homepage": "https://github.com/mingalevme/illuminate-lock",
+    "version": "0.0.1",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mingalev Mikhail",
+            "email": "mingalevme@gmail.com"
+        }
+    ],
+    "require": {
+        "symfony/lock": "dev-master"
+    },
+    "require-dev": {
+        "laravel/lumen": "^5.0",
+        "laravel/laravel": "^5.0",
+        "phpunit/phpunit": "~6.0",
+        "mockery/mockery": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Mingalevme\\Illuminate\\Lock\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Mingalevme\\Tests\\Illuminate\\Lock\\": "tests/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    },
+    "minimum-stability": "dev"
+}
