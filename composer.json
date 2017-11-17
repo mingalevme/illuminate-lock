@@ -9,7 +9,6 @@
         "semaphore"
     ],
     "homepage": "https://github.com/mingalevme/illuminate-lock",
-    "version": "0.0.1",
     "license": "MIT",
     "authors": [
         {
