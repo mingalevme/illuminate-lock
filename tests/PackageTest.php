@@ -10,6 +10,14 @@ use Mingalevme\Illuminate\Lock\LaravelGoogleServiceProvider;
 
 trait PackageTest
 {
+    public function setUp()
+    {
+        parent::setUp();
+        $this->app->bind('path.storage', function () {
+            return '/tmp';
+        });
+    }
+    
     public function testFlockDriver()
     {
         putenv('LOCK_DRIVER=flock');
