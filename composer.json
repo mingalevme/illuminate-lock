@@ -17,7 +17,7 @@
         }
     ],
     "require": {
-        "symfony/lock": "dev-master"
+        "symfony/lock": "^4.0"
     },
     "require-dev": {
         "laravel/lumen": "^5.0",

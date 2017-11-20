@@ -27,6 +27,13 @@ class LockManager
      * @var array
      */
     protected $stores = [];
+    
+    /**
+     * The array of resolved factories.
+     *
+     * @var array
+     */
+    protected $factories = [];
 
     /**
      * Create a new Manager instance.
@@ -45,11 +52,27 @@ class LockManager
      * @param  string|null  $name
      * @return mixed
      */
+    public function factory($name = null)
+    {
+        $name = $name ?: $this->getDefaultDriver();
+        
+        return isset($this->factories[$name])
+            ? $this->factories[$name]
+            : ($this->factories[$name] = new Factory($this->store($name)));
+    }
+    
+    /**
+     * Get a cache pool instance by name.
+     *
+     * @param  string|null  $name
+     * @return mixed
+     */
     public function store($name = null)
     {
         $name = $name ?: $this->getDefaultDriver();
 
-        return isset($this->pools[$name]) ? $this->pools[$name] : ($this->pools[$name] = $this->resolve($name));
+        return isset($this->stores[$name])
+            ? $this->stores[$name] : ($this->stores[$name] = $this->resolve($name));
     }
 
     /**
@@ -103,7 +126,7 @@ class LockManager
         $driverMethod = 'create'.ucfirst($config['driver']).'Driver';
         
         if (method_exists($this, $driverMethod)) {
-            return new Factory($this->{$driverMethod}($config));
+            return $this->{$driverMethod}($config);
         } else {
             throw new InvalidArgumentException("Driver [{$config['driver']}] is not supported.");
         }
@@ -209,6 +232,6 @@ class LockManager
      */
     public function __call($method, $parameters)
     {
-        return $this->store()->$method(...$parameters);
+        return $this->factory()->$method(...$parameters);
     }
 }

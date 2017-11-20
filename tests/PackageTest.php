@@ -2,6 +2,7 @@
 
 namespace Mingalevme\Tests\Illuminate\Lock;
 
+use ReflectionObject;
 use Mingalevme\Illuminate\Lock\LockManager;
 use Mingalevme\Illuminate\Lock\Facades\Lock;
 use Mingalevme\Illuminate\Lock\LumenGoogleServiceProvider;
@@ -16,9 +17,9 @@ trait PackageTest
         
         $this->app['config']->set('lock', require __DIR__.'/../config/lock.php');
         
-        $store = $this->app['lock.store'];
+        $factory = $this->app['lock.factory'];
         
-        $this->assertInstanceOf(\Symfony\Component\Lock\Store\FlockStore::class, $store);
+        $this->assertFactorysStoreInstanceOf(\Symfony\Component\Lock\Store\FlockStore::class, $factory);
         
         putenv('LOCK_FILE_PATH=');
     }
@@ -29,9 +30,9 @@ trait PackageTest
         
         $this->app['config']->set('lock', require __DIR__.'/../config/lock.php');
         
-        $store = $this->app['lock.store'];
+        $factory = $this->app['lock.factory'];
         
-        $this->assertInstanceOf(\Symfony\Component\Lock\Store\MemcachedStore::class, $store);
+        $this->assertFactorysStoreInstanceOf(\Symfony\Component\Lock\Store\MemcachedStore::class, $factory);
         
         putenv('LOCK_DRIVER=');
     }
@@ -50,9 +51,9 @@ trait PackageTest
             ],
         ]);
         
-        $store = $this->app['lock.store'];
+        $factory = $this->app['lock.factory'];
         
-        $this->assertInstanceOf(\Symfony\Component\Lock\Store\RedisStore::class, $store);
+        $this->assertFactorysStoreInstanceOf(\Symfony\Component\Lock\Store\RedisStore::class, $factory);
         
         putenv('LOCK_DRIVER=');
     }
@@ -63,9 +64,9 @@ trait PackageTest
         
         $this->app['config']->set('lock', require __DIR__.'/../config/lock.php');
         
-        $store = $this->app['lock.store'];
+        $factory = $this->app['lock.factory'];
         
-        $this->assertInstanceOf(\Symfony\Component\Lock\Store\SemaphoreStore::class, $store);
+        $this->assertFactorysStoreInstanceOf(\Symfony\Component\Lock\Store\SemaphoreStore::class, $factory);
         
         putenv('LOCK_DRIVER=');
     }
@@ -77,9 +78,9 @@ trait PackageTest
         
         $this->app['config']->set('lock', require __DIR__.'/../config/lock.php');
         
-        $store = $this->app['lock.store'];
+        $factory = $this->app['lock.factory'];
         
-        $this->assertInstanceOf(\Symfony\Component\Lock\Store\RetryTillSaveStore::class, $store);
+        $this->assertFactorysStoreInstanceOf(\Symfony\Component\Lock\Store\RetryTillSaveStore::class, $factory);
         
         putenv('LOCK_DRIVER=');
         putenv('LOCK_FILE_PATH=');
@@ -92,11 +93,18 @@ trait PackageTest
         
         $this->app['config']->set('lock', require __DIR__.'/../config/lock.php');
         
-        $store = $this->app['lock.store'];
+        $factory = $this->app['lock.factory'];
         
-        $this->assertInstanceOf(\Symfony\Component\Lock\Store\CombinedStore::class, $store);
+        $this->assertFactorysStoreInstanceOf(\Symfony\Component\Lock\Store\CombinedStore::class, $factory);
         
         putenv('LOCK_DRIVER=');
         putenv('LOCK_FILE_PATH=');
+    }
+    
+    protected function assertFactorysStoreInstanceOf($expectedStoreClass, $factory)
+    {
+        $prop = (new ReflectionObject($factory))->getProperty('store');
+        $prop->setAccessible(true);
+        $this->assertInstanceOf($expectedStoreClass, $prop->getValue($factory));
     }
 }

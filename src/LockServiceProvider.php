@@ -27,6 +27,10 @@ abstract class LockServiceProvider extends ServiceProvider
         $this->app->singleton('lock.store', function ($app) {
             return $app['lock']->store();
         });
+        
+        $this->app->singleton('lock.factory', function ($app) {
+            return $app['lock']->factory();
+        });
     }
     
     /**
@@ -42,7 +46,7 @@ abstract class LockServiceProvider extends ServiceProvider
     public function provides()
     {
         return [
-            'lock', 'lock.store',
+            'lock', 'lock.store', 'lock.factory',
         ];
     }
 }
