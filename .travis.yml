@@ -4,6 +4,7 @@ php:
     - 7.1
 
 before_script:
+    - pecl install memcached
     - travis_retry composer self-update
     - travis_retry composer install --no-interaction --prefer-source --dev
 
