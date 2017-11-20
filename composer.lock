@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "f2c73a7fccbad3c4904355f46eb6d38d",
+    "content-hash": "091301ae2d2dd63aee20d6b3ebd6b314",
     "packages": [
         {
             "name": "psr/log",
@@ -747,7 +747,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2017-11-19T15:32:35+00:00"
+            "time": "2017-11-19 15:32:35"
         },
         {
             "name": "laravel/laravel",
@@ -2212,6 +2212,61 @@
             "time": "2017-11-16 15:02:34"
         },
         {
+            "name": "predis/predis",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nrk/predis.git",
+                "reference": "d72f0678bade78af953605622760fe262d82eb58"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nrk/predis/zipball/d72f0678bade78af953605622760fe262d82eb58",
+                "reference": "d72f0678bade78af953605622760fe262d82eb58",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.9"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.8"
+            },
+            "suggest": {
+                "ext-curl": "Allows access to Webdis when paired with phpiredis",
+                "ext-phpiredis": "Allows faster serialization and deserialization of the Redis protocol"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Predis\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Daniele Alessandri",
+                    "email": "suppakilla@gmail.com",
+                    "homepage": "http://clorophilla.net"
+                }
+            ],
+            "description": "Flexible and feature-complete Redis client for PHP and HHVM",
+            "homepage": "http://github.com/nrk/predis",
+            "keywords": [
+                "nosql",
+                "predis",
+                "redis"
+            ],
+            "time": "2017-07-12T14:44:10+00:00"
+        },
+        {
             "name": "psr/container",
             "version": "dev-master",
             "source": {
@@ -2379,7 +2434,7 @@
                 "interactive",
                 "shell"
             ],
-            "time": "2017-11-19T20:14:47+00:00"
+            "time": "2017-11-19 20:14:47"
         },
         {
             "name": "ramsey/uuid",
@@ -3075,7 +3130,7 @@
                 "mail",
                 "mailer"
             ],
-            "time": "2017-11-19T08:49:26+00:00"
+            "time": "2017-11-19 08:49:26"
         },
         {
             "name": "symfony/console",
@@ -3144,7 +3199,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2017-11-19T18:41:20+00:00"
+            "time": "2017-11-19 18:41:20"
         },
         {
             "name": "symfony/css-selector",
@@ -3253,7 +3308,7 @@
             ],
             "description": "Symfony Debug Component",
             "homepage": "https://symfony.com",
-            "time": "2017-11-19T20:09:36+00:00"
+            "time": "2017-11-19 20:09:36"
         },
         {
             "name": "symfony/event-dispatcher",
@@ -3752,7 +3807,7 @@
                 "uri",
                 "url"
             ],
-            "time": "2017-11-19T20:09:36+00:00"
+            "time": "2017-11-19 20:09:36"
         },
         {
             "name": "symfony/translation",
@@ -4026,7 +4081,7 @@
                 "env",
                 "environment"
             ],
-            "time": "2017-11-18T18:27:11+00:00"
+            "time": "2017-11-18 18:27:11"
         },
         {
             "name": "webmozart/assert",
@@ -4081,7 +4136,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "predis/predis": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],

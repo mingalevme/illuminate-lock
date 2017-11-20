@@ -23,7 +23,8 @@
         "laravel/lumen": "^5.0",
         "laravel/laravel": "^5.0",
         "phpunit/phpunit": "~6.0",
-        "mockery/mockery": "^1.0"
+        "mockery/mockery": "^1.0",
+        "predis/predis": "^2.0@dev"
     },
     "autoload": {
         "psr-4": {
