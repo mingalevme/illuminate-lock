@@ -5,7 +5,7 @@ php:
 
 before_script:
     - sudo apt-get install -y pkg-config zlib1g-dev libmemcached-dev
-    - printf "\n" | pecl install memcached
+    - printf "no --disable-memcached-sasl\n" | pecl install memcached
     - php -m | grep redis > /dev/null || printf "\n" | pecl install redis
     - travis_retry composer self-update
     - travis_retry composer install --no-interaction --prefer-source --dev
