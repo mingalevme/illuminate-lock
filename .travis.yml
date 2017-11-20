@@ -4,8 +4,10 @@ php:
     - 7.1
 
 before_script:
-    - sudo apt-get install -y libmemcached-dev
-    - pecl install memcached redis
+    - sudo add-apt-repository ppa:ondrej/php
+    - sudo apt-get update
+    - apt install -y php7.1-memcached
+    - printf "\n" | pecl install redis
     - travis_retry composer self-update
     - travis_retry composer install --no-interaction --prefer-source --dev
 
