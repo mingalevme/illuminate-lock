@@ -4,8 +4,7 @@ php:
     - 7.1
 
 before_script:
-    - sudo apt-get install -y pkg-config zlib1g-dev libmemcached-dev
-    - printf "no --disable-memcached-sasl\n" | pecl install memcached
+    - echo "extension = memcached.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
     - travis_retry composer self-update
     - travis_retry composer install --no-interaction --prefer-source --dev
 

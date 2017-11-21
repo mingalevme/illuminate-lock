@@ -24,7 +24,8 @@
         "laravel/laravel": "^5.0",
         "phpunit/phpunit": "~6.0",
         "mockery/mockery": "^1.0",
-        "predis/predis": "^2.0@dev"
+        "predis/predis": "^2.0@dev",
+        "phpunit/php-code-coverage": "^5.2@dev"
     },
     "autoload": {
         "psr-4": {

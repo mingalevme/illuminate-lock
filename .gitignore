@@ -1,6 +1,7 @@
 # Composer files
 composer.phar
 vendor/
+/coverage.xml
 
 # Local configs
 config/autoload/*.local.php
@@ -14,3 +15,4 @@ data/cache/
 data/sessions/
 data/tmp/
 temp/
+

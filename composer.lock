@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "091301ae2d2dd63aee20d6b3ebd6b314",
+    "content-hash": "635cd7418904d56740f2f8a4e0bd8626",
     "packages": [
         {
             "name": "psr/log",
@@ -2264,7 +2264,7 @@
                 "predis",
                 "redis"
             ],
-            "time": "2017-07-12T14:44:10+00:00"
+            "time": "2017-07-12 14:44:10"
         },
         {
             "name": "psr/container",
@@ -4137,7 +4137,8 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "predis/predis": 20
+        "predis/predis": 20,
+        "phpunit/php-code-coverage": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

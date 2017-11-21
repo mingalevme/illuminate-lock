@@ -56,7 +56,7 @@ return [
         
         'combined' => [
             'driver' => 'combined',
-            'stores' => ['flock', 'memcached'],
+            'stores' => env('LOCK_COMBINED_STORES', []),
             'strategy' => env('LOCK_COMBINED_STRATEGY', 'consensus'),
         ],
         

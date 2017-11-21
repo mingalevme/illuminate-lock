@@ -54,7 +54,7 @@ class LockManager
      */
     public function factory($name = null)
     {
-        $name = $name ?: $this->getDefaultDriver();
+        $name = $name ?: $this->getDefaultStore();
         
         return isset($this->factories[$name])
             ? $this->factories[$name]
@@ -69,10 +69,11 @@ class LockManager
      */
     public function store($name = null)
     {
-        $name = $name ?: $this->getDefaultDriver();
+        $name = $name ?: $this->getDefaultStore();
 
         return isset($this->stores[$name])
-            ? $this->stores[$name] : ($this->stores[$name] = $this->resolve($name));
+            ? $this->stores[$name]
+            : ($this->stores[$name] = $this->resolve($name));
     }
 
     /**
@@ -81,9 +82,9 @@ class LockManager
      * @param  string  $name
      * @return array
      */
-    protected function getConfig($name)
+    protected function getStoreConfig($name)
     {
-        return $this->app['config']["lock.stores.{$name}"];
+        return $this->app->make('lock.config')["stores.{$name}"];
     }
 
     /**
@@ -91,9 +92,9 @@ class LockManager
      *
      * @return string
      */
-    public function getDefaultDriver()
+    public function getDefaultStore()
     {
-        return $this->app['config']['lock.default'];
+        return $this->app->make('lock.config')['default'];
     }
 
     /**
@@ -102,9 +103,9 @@ class LockManager
      * @param  string  $name
      * @return void
      */
-    public function setDefaultDriver($name)
+    public function setDefaultStore($name)
     {
-        $this->app['config']['lock.default'] = $name;
+        $this->app->make('lock.config')['default'] = $name;
     }
 
     /**
@@ -117,7 +118,7 @@ class LockManager
      */
     protected function resolve($name)
     {
-        $config = $this->getConfig($name);
+        $config = $this->getStoreConfig($name);
         
         if (is_null($config)) {
             throw new InvalidArgumentException("Lock store [{$name}] is not defined.");
